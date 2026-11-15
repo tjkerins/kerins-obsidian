@@ -9,3 +9,5 @@
 
 # Exclude macOS Finder (System Explorer) View States
 .DS_Store
+# Kerins software factory: generated job notes stay on this machine
+Notes/Factory/
