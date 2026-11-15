@@ -50,6 +50,20 @@
     "monthly-uses": "number",
     "runtime": "number",
     "pages": "number",
-    "acquired": "date"
+    "acquired": "date",
+    "needs_me": "checkbox",
+    "needs_me_reason": "text",
+    "surfaces": "multitext",
+    "reviews": "multitext",
+    "cost_estimate_usd": "number",
+    "started": "datetime",
+    "ended": "datetime",
+    "source_updated": "datetime",
+    "exported_at": "datetime",
+    "issue": "number",
+    "pr": "number",
+    "round": "number",
+    "round_limit": "number",
+    "schema": "number"
   }
 }

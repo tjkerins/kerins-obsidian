@@ -1,0 +1,102 @@
+filters:
+  and:
+    - categories.contains(link("Factory jobs"))
+    - note.generated_by == "kerins-software-factory/vault-export"
+    - '!file.name.contains("Template")'
+properties:
+  file.name:
+    displayName: Job
+  note.title:
+    displayName: Title
+  note.repo:
+    displayName: Repo
+  note.stage:
+    displayName: Stage
+  note.needs_me_reason:
+    displayName: Needs me for
+  note.risk:
+    displayName: Risk
+  note.gate:
+    displayName: Gate
+  note.pr_url:
+    displayName: Pull request
+  note.cost_estimate_usd:
+    displayName: Cost (estimate, USD)
+  note.source_updated:
+    displayName: Job updated
+  note.source_state:
+    displayName: Source
+views:
+  - type: table
+    name: Needs me
+    filters:
+      and:
+        - note.needs_me == true
+    order:
+      - file.name
+      - title
+      - repo
+      - needs_me_reason
+      - stage
+      - risk
+      - pr_url
+      - source_updated
+      - source_state
+    sort:
+      - property: note.source_updated
+        direction: ASC
+  - type: table
+    name: In progress
+    filters:
+      and:
+        - note.stage != "ready"
+        - note.stage != "needs-human"
+        - note.stage != "merged"
+        - note.stage != "rejected"
+        - note.source_state != "missing"
+    order:
+      - file.name
+      - title
+      - repo
+      - stage
+      - risk
+      - gate
+      - source_updated
+      - source_state
+    sort:
+      - property: note.source_updated
+        direction: DESC
+  - type: table
+    name: Done
+    filters:
+      or:
+        - note.stage == "merged"
+        - note.stage == "rejected"
+    order:
+      - file.name
+      - title
+      - repo
+      - stage
+      - pr_url
+      - cost_estimate_usd
+      - source_updated
+    sort:
+      - property: note.source_updated
+        direction: DESC
+  - type: table
+    name: All
+    order:
+      - file.name
+      - title
+      - repo
+      - stage
+      - needs_me_reason
+      - risk
+      - gate
+      - pr_url
+      - cost_estimate_usd
+      - source_updated
+      - source_state
+    sort:
+      - property: file.name
+        direction: DESC
